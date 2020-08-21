@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="stylesheet" type="text/css" href="../public/css/styles.css" />
+    
+  </head>
+
+  <body>
+    <h1 data-position="header">NewsCorp Assessment Task</h1>
+
+    <section data-position="add-references">
+      <h2>Load Data</h2>
+      <form action="/api/data" method="POST">
+        <input type="text" placeholder="URL" name="url" required />
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+    <section data-position="delete-references">
+      <div>
+        <h2>Delete Data</h2>
+        <form action="" method="DELETE">
+          <button id="delete-button">Delete all</button>
+        </form>        
+      </div>
+      <div id="message"></div>
+    </section>
+    <section data-position="reference">
+      <% for ( var i = 0; i < data.length; i++ ){ %>
+      <div class="table">
+        <div class="row">
+          <div class="column left">Article ID</div>
+          <div class="column right"><%= data[i].articleId %></div>
+        </div>
+        <div class="row">
+          <div class="column left">Title</div>
+          <div class="column right"><%= data[i].title %></div>
+        </div>
+        <div class="row">
+          <div class="column left">Free</div>
+          <div class="column right"><%= data[i].free %></div>
+        </div>
+        <div class="row">Authors</div>
+        <% for ( var j = 0; j < data[i].authors.length; j++ ){ %>
+        <div class="row">
+          <div class="column left"></div>
+          <div class="column right"><%= data[i].authors[j] %></div>
+        </div>
+        <% } %>
+
+        <div class="row">
+          <div class="column left">Data</div>
+        </div>
+        <div class="row">
+          <div class="column left">Live Data</div>
+          <div class="column right"><%= data[i].data.liveData %></div>
+        </div>
+        <div class="row">
+          <div class="column left">Upload Date</div>
+          <div class="column right"><%= data[i].data.dateUpdated %></div>
+        </div>
+        <div class="row">
+          <div class="column left">Original Source</div>
+          <div class="column right"><%= data[i].originalSource %></div>
+        </div>
+        <div class="row">Section</div>
+        <div class="row">
+          <div class="column left">Id</div>
+          <div class="column right"><%= data[i].section.id %></div>
+        </div>
+        <div class="row">
+          <div class="column left">Path</div>
+          <div class="column right"><%= data[i].section.path %></div>
+        </div>
+        <div class="row">
+          <div class="column left">Slug</div>
+          <div class="column right"><%= data[i].section.slug %></div>
+        </div>
+        <div class="row">
+          <div class="column left">Link.Self</div>
+          <div class="column right"><%= data[i].section.link.self %></div>
+        </div>
+        <div class="row">
+          <div class="column left">inDt</div>
+          <div class="column right"><%= data[i].inDt %></div>
+        </div>
+      </div>
+      <% } %>
+    </section>
+    <script src="../public/js/main.js"></script>
+  </body>
+</html>
